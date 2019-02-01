@@ -21,3 +21,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('athletes', 'AthletesController');
 Route::resource('gallery', 'GalleryController');
+Route::resource('events', 'EventsController');

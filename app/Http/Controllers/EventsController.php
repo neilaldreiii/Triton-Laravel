@@ -3,9 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
+use App\Events;
 
 class EventsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+        
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +21,8 @@ class EventsController extends Controller
      */
     public function index()
     {
-        //
+        $events = Events::orderBy('created_at', 'DESC')->get();
+        return view('events.index', compact('events'));
     }
 
     /**
@@ -23,7 +32,7 @@ class EventsController extends Controller
      */
     public function create()
     {
-        //
+        return view('events.create');
     }
 
     /**
@@ -34,7 +43,35 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = request()->validate([
+            'title' => ['required', 'min:3'],
+            'description' => ['required', 'min:3'],
+            'attachment' => ['required', 'image', 'max:1999']
+        ]);
+
+        //handle attachment files
+        if($request->hasFile('attachment')) {
+
+            $filenameWithExt = $request->file('attachment')->getClientOriginalName();
+            
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+            $extension = $request->file('attachment')->getClientOriginalExtension();
+
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+
+            $path = $request->file('attachment')->storeAs('public/uploads', $fileNameToStore);
+        
+        } else {
+
+            $filenameToStore = 'noattachment.jpg';
+
+        }
+
+        $attributes['attachment'] = $fileNameToStore;
+
+        $events = Events::create($attributes);
+        return redirect('/events');
     }
 
     /**
@@ -56,7 +93,9 @@ class EventsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $event = Events::findOrFail($id);
+
+        return view('events.edit', compact('event'));
     }
 
     /**

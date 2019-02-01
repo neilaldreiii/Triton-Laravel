@@ -57,9 +57,9 @@ class GalleryController extends Controller
 
             $extension = $request->file('image')->getClientOriginalExtension();
 
-            $fineNameToStore = $filename.'_'.time().'.'.$extension;
+            $filenameToStore = $filename.'_'.time().'.'.$extension;
 
-            $path = $request->file('image')->storeAs('public/uploads', $fineNameToStore);
+            $path = $request->file('image')->storeAs('public/uploads', $filenameToStore);
         
         } else {
 
@@ -67,7 +67,7 @@ class GalleryController extends Controller
 
         }
 
-        $attributes['image'] = $fineNameToStore;
+        $attributes['image'] = $filenameToStore;
 
         $gallery = Gallery::create($attributes);
         return redirect('/gallery');
