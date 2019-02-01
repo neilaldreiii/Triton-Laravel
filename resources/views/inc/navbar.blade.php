@@ -36,28 +36,30 @@
             <a href="/products" class="nav-link">Products</a>
         </li>
     </ul>
-    @if (Route::has('login'))
-    <div class="top-right-links">
-        @auth
-            <a href="{{ url('/home') }}">Dashboard</a>
-        @endauth
-    @endif
-    
-    @guest
-        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-            @if (Route::has('register'))
-                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+    <div class="nav-controls">
+        @if (Route::has('login'))
+            <div class="top-right-links d-flex">
+                @auth
+                    <a href="{{ url('/home') }}">Dashboard</a>
+                @endauth
             @endif
-    @else
-        <a href="#"> {{ ucwords(Auth::user()->name) }}</a>
-        <a href="{{ route('logout') }}"
-            onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-            {{ __('Logout') }}
-        </a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
-        </form>
-    @endguest
+
+            @guest
+                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    @if (Route::has('register'))
+                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    @endif
+            @else
+                <a href="#"> {{ ucwords(Auth::user()->name) }} </a>
+                <a href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            @endguest
+        </div>
     </div>
   </nav>

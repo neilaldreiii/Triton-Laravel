@@ -3,9 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
+use App\Gallery;
 
 class GalleryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+        
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +21,8 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        //
+        $gallery = Gallery::orderBy('created_at', 'DESC')->get();
+        return view('gallery.index', compact('gallery'));
     }
 
     /**
@@ -23,7 +32,7 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        //
+        return view('gallery.create');
     }
 
     /**
@@ -34,7 +43,34 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = request()->validate([
+            'description' => ['required', 'min:3'],
+            'image' => ['required', 'image', 'max:1999']
+        ]);
+
+        //handle image files
+        if($request->hasFile('image')) {
+
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+            
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+            $extension = $request->file('image')->getClientOriginalExtension();
+
+            $fineNameToStore = $filename.'_'.time().'.'.$extension;
+
+            $path = $request->file('image')->storeAs('public/uploads', $fineNameToStore);
+        
+        } else {
+
+            $filenameToStore = 'noimage.jpg';
+
+        }
+
+        $attributes['image'] = $fineNameToStore;
+
+        $gallery = Gallery::create($attributes);
+        return redirect('/gallery');
     }
 
     /**
@@ -79,6 +115,13 @@ class GalleryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $gallery = Gallery::findOrFail($id);
+        $gallery->delete();
+
+        if($gallery->image != 'noimage.jpg') {
+            Storage::delete('public/uploads/'.$gallery->image);
+        }
+
+        return redirect('/gallery');
     }
 }
