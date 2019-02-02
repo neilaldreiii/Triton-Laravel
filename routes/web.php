@@ -23,3 +23,5 @@ Route::resource('athletes', 'AthletesController');
 Route::resource('gallery', 'GalleryController');
 Route::resource('events', 'EventsController');
 Route::resource('board', 'BoardMemberController');
+
+Route::get('/coaches', 'PagesController@coaches');
