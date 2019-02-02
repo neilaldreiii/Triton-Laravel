@@ -18,4 +18,8 @@ class PagesController extends Controller
     {
         return view('pages.registration');
     }
+    public function policy()
+    {
+        return view('pages.policies');
+    }
 }
