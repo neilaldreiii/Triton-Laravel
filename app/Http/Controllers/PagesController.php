@@ -10,4 +10,8 @@ class PagesController extends Controller
     {
         return view('pages.coaches');
     }
+    public function guide()
+    {
+        return view('pages.guide');
+    }
 }

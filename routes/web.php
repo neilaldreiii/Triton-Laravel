@@ -25,3 +25,4 @@ Route::resource('events', 'EventsController');
 Route::resource('board', 'BoardMemberController');
 
 Route::get('/coaches', 'PagesController@coaches');
+Route::get('/guidelines', 'PagesController@guide');

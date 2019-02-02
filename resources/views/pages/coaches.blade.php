@@ -14,7 +14,7 @@
         </div>
         <div class="row">
             <div class="col-sm">
-                <img src="/storage/images/coachwilfredo.jpg" alt="" class="img-thumbnail mt-4 mb-3 rounded">
+                <img src="/storage/images/coachwilfredo.jpg" alt="" class="img-thumbnail mt-4 mb-3 rounded d-block mx-auto rounded">
                 <h1 class="text-center">
                     Wilfredo Sunglao Jr.
                 </h1>
