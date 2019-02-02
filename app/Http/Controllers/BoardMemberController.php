@@ -3,9 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
+use App\BoardMembers;
 
 class BoardMemberController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+        
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +21,8 @@ class BoardMemberController extends Controller
      */
     public function index()
     {
-        //
+        $members = BoardMembers::orderBy('member', 'ASC')->get();
+        return view('board-members.index', compact('members'));
     }
 
     /**
@@ -23,7 +32,7 @@ class BoardMemberController extends Controller
      */
     public function create()
     {
-        //
+        return view('board-members.create');
     }
 
     /**
@@ -34,7 +43,35 @@ class BoardMemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = request()->validate([
+            'member' => ['required', 'min:3'],
+            'position' => ['required', 'min:3'],
+            'member_dp' => ['required', 'image', 'max:1999']
+        ]);
+
+        //handle member_dp files
+        if($request->hasFile('member_dp')) {
+
+            $filenameWithExt = $request->file('member_dp')->getClientOriginalName();
+            
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+            $extension = $request->file('member_dp')->getClientOriginalExtension();
+
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+
+            $path = $request->file('member_dp')->storeAs('public/uploads', $fileNameToStore);
+        
+        } else {
+
+            $filenameToStore = 'nomember_dp.jpg';
+
+        }
+
+        $attributes['member_dp'] = $fileNameToStore;
+
+        $events = BoardMembers::create($attributes);
+        return redirect('/board');
     }
 
     /**
@@ -56,7 +93,9 @@ class BoardMemberController extends Controller
      */
     public function edit($id)
     {
-        //
+        $member = BoardMembers::findOrFail($id);
+
+        return view('board-members.edit', compact('member'));
     }
 
     /**
@@ -68,7 +107,33 @@ class BoardMemberController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'member' => ['required', 'min:3'],
+            'position' => ['required', 'min:3'],
+            'member_dp' => ['nullable', 'image', 'max:1999']
+        ]);
+
+        if($request->hasFile('member_dp'))
+        {
+            $filenameWithExt = $request->file('member_dp')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('member_dp')->getClientOriginalExtension();
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            $path = $request->file('member_dp')->storeAs('public/uploads', $fileNameToStore);
+        }
+
+        $members = BoardMembers::findOrFail($id);
+
+        $members->member = $request->input('member');
+        $members->position = $request->input('position');
+
+       if($request->hasFile('member_dp')) {
+           $members->member_dp = $fileNameToStore;
+       }
+
+        if($members->save()) {
+            return redirect('/board');
+        }
     }
 
     /**
@@ -79,6 +144,13 @@ class BoardMemberController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $member = BoardMembers::findOrFail($id);
+        $member->delete();
+
+        if($member->member_dp != 'noimage.jpg') {
+            Storage::delete('public/uploads/'.$member->member_dp);
+        }
+
+        return redirect('/board');
     }
 }

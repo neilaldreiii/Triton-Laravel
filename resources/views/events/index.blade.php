@@ -14,14 +14,14 @@
                 </div>
             @endauth
         </div>
-        <div class="row">
-            @foreach ($events as $event)
+        @foreach ($events as $event)
+            <div class="row">
                 <div class="col-sm mt-3 mb-3">
                     <div class="card">
                         <div class="card-header">
                             <h3>{{ $event->title }}</h3>
                         </div>
-                        <img src="/storage/uploads/{{ $event->attachment }}" alt="" class="card-img-top">
+                        <img style="max-height: 520px;" src="/storage/uploads/{{ $event->attachment }}" alt="" class="card-img-top">
                         <div class="card-body">
                             <p class="card-text">{{ $event->description }}</p>
                         </div>
@@ -37,7 +37,7 @@
                         @endauth
                     </div>
                 </div>
-            @endforeach
-        </div>
+            </div>
+        @endforeach
     </div>
 @endsection

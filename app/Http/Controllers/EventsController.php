@@ -107,7 +107,33 @@ class EventsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title' => ['required', 'min:3'],
+            'description' => ['required', 'min:3'],
+            'attachment' => ['nullable', 'image', 'max:1999']
+        ]);
+
+        if($request->hasFile('attachment'))
+        {
+            $filenameWithExt = $request->file('attachment')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('attachment')->getClientOriginalExtension();
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            $path = $request->file('attachment')->storeAs('public/uploads', $fileNameToStore);
+        }
+
+        $event = Events::findOrFail($id);
+
+        $event->title = $request->input('title');
+        $event->description = $request->input('description');
+
+       if($request->hasFile('attachment')) {
+           $event->attachment = $fileNameToStore;
+       }
+
+        if($event->save()) {
+            return redirect('/events');
+        }
     }
 
     /**
@@ -118,6 +144,13 @@ class EventsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $event = Events::findOrFail($id);
+        $event->delete();
+
+        if($event->attachment != 'noimage.jpg') {
+            Storage::delete('public/uploads/'.$event->attachment);
+        }
+
+        return redirect('/events');
     }
 }

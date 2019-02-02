@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBmTable extends Migration
+class CreateBoardMembersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateBmTable extends Migration
      */
     public function up()
     {
-        Schema::create('bm', function (Blueprint $table) {
+        Schema::create('board_members', function (Blueprint $table) {
             $table->increments('id');
             $table->string('member');
             $table->string('position');
@@ -29,6 +29,6 @@ class CreateBmTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bm');
+        Schema::dropIfExists('board_members');
     }
 }
