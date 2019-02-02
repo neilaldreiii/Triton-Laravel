@@ -14,4 +14,8 @@ class PagesController extends Controller
     {
         return view('pages.guide');
     }
+    public function register()
+    {
+        return view('pages.registration');
+    }
 }

@@ -27,10 +27,10 @@
             <a href="/guidelines" class="nav-link">Guidelines</a>
         </li>
         <li class="nav-item">
-            <a href="/guidelines" class="nav-link">Registration</a>
+            <a href="/registration" class="nav-link">Registration</a>
         </li>
         <li class="nav-item">
-            <a href="/guidelines" class="nav-link">Policies</a>
+            <a href="/policies" class="nav-link">Policies</a>
         </li>
         <li class="nav-item">
             <a href="/products" class="nav-link">Products</a>
