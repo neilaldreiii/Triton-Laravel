@@ -24,7 +24,7 @@
                 </ul>
                 <div class="card mt-3 mb-3">
                     <div class="card-header">
-                        <h6 class="text-primary">Note</h6>
+                        <h6 class="text-info">Note</h6>
                     </div>
                     <div class="card-body">
                         <p>If requested by the parent or swimmer, the officers will keep all identities anonymous.</p>

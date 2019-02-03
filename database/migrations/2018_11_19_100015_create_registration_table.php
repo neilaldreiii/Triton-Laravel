@@ -13,7 +13,7 @@ class CreateRegistrationTable extends Migration
      */
     public function up()
     {
-        Schema::create('registration', function (Blueprint $table) {
+        Schema::create('registrations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('gender');
             $table->string('birth_month');
@@ -24,7 +24,7 @@ class CreateRegistrationTable extends Migration
             $table->string('lastname');
             $table->string('school');
             $table->string('parent');
-            $table->unsignedInteger('mobile');
+            $table->string('mobile');
             $table->timestamps();
         });
     }

@@ -95,7 +95,7 @@
                 </ul>
                 <div class="card mt-3 mb-3">
                     <div class="card-header">
-                        <h6 class="text-primary">Note</h6>
+                        <h6 class="text-info">Note</h6>
                     </div>
                     <div class="card-body">
                         <p>In addition, parents are always welcome to contact a coach or Board members with questions or concerns.</p>
@@ -186,13 +186,13 @@
                         <p>A time out period from practice (5-10 minutes) where I can reflect upon my behavior and adjust it as required.</p>
                     </li>
                     <li class="list-group-item">
-                        <h5 class="text-primary">#3</h5>
+                        <h5 class="text-danger">#3</h5>
                         <p>Removal from swim practice. If I am asked to leave swim practice I will not leave the premises unless directed by a coach or approved by a parent.</p>
                     </li>
                 </ul>
                 <div class="card mt-3 mb-3">
                     <div class="card-header">
-                        <h6 class="text-primary">Note</h6>
+                        <h6 class="text-info">Note</h6>
                     </div>
                     <div class="card-body">
                         <p>If discipline continues to be an issue, a coach/parent/swimmer conference may occur.</p>

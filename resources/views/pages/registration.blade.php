@@ -10,6 +10,7 @@
                 <p class="text-center">
                     The NAGA TRITON Swimming Club is a not for-profit organization run solely by parent volunteers and is self-supporting through membership dues and fundraising. Fees and fundraising efforts go directly towards the team’s operating expenses including pool rental, coaches’ salaries, travel expenses, equipment, and supplies.
                 </p>
+                <a href="#registerAthlete" class="btn btn-block btn-outline-primary mt-5 mb-5">Proceed to registration</a>
             </div>
         </div>
         <div class="row mt-3 mb-3 border-bottom">
@@ -54,7 +55,7 @@
                 <p class="text-justify">A family is responsible for monthly dues throughout the entire swim year. (P700)</p>
                 <div class="card mt-3 mb-3">
                     <div class="card-header">
-                        <h6 class="text-primary">Note</h6>
+                        <h6 class="text-info">Note</h6>
                     </div>
                     <div class="card-body">
                         <p>No refunds or waived fees will be given, even if a swimmer has not attended practice within a particular month. Swimmers may not enter the pool or participate in meets during the month(s) they are inactive.</p>
@@ -111,12 +112,18 @@
                 <p class="text-justify">Should your swimmer decide to quit the team for any reason, the team should be notified, in writing, by the person responsible for the account.</p>
                 <div class="card mt-3 mb-3">
                     <div class="card-header">
-                        <h6 class="text-primary">Note</h6>
+                        <h6 class="text-info">Note</h6>
                     </div>
                     <div class="card-body">
                         <p>Fees will not be refunded when a swimmer leaves the team.</p>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row mt-3 mb-3 border-bottom">
+            <div class="col">
+                <h3 id="registerAthlete" class="text-center">Register</h3>
+                @include('inc.register')
             </div>
         </div>
     </div>

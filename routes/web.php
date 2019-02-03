@@ -26,5 +26,6 @@ Route::resource('board', 'BoardMemberController');
 
 Route::get('/coaches', 'PagesController@coaches');
 Route::get('/guidelines', 'PagesController@guide');
-Route::get('/registration', 'PagesController@register');
+Route::get('/registration', 'PagesController@register'); // registration view
+ROute::post('/registration', 'PagesController@registerAthletes');
 Route::get('/policies', 'PagesController@policy');

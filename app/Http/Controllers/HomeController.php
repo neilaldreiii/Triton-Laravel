@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Registration;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $users = User::orderBy('name', 'ASC')->get();
+        $registrations = Registration::orderBy('created_at', 'ASC')->get();
+
+        return view('home', compact('users', 'registrations'));
     }
 }
