@@ -6,6 +6,7 @@
     <div class="container border-bottom">
         <form action="/board" method="POST" enctype="multipart/form-data">
             @csrf
+            <h4 class="m-3">Add Board Member</h4>
             <div class="form-group m-3">
                 <input type="text" name="member" placeholder="Full Name" id="" class="form-control">
             </div>

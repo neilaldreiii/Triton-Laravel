@@ -6,6 +6,7 @@
     <div class="container">
         <form action="/athletes" method="POST" enctype="multipart/form-data" class="border-bottom">
             @csrf
+            <h4 class="m-3">Add Athlete</h4>
             <div class="row">
                 <div class="form-group m-3 col-sm">
                     <input type="text" name="fullname" id="" class="form-control" placeholder="Full Name">

@@ -6,6 +6,7 @@
     <div class="container border-bottom">
         <form action="/events" method="POST" enctype="multipart/form-data">
             @csrf
+            <h4 class="m-3">Add New Event</h4>
             <div class="form-group m-3">
                 <input type="text" name="title" placeholder="Title" id="" class="form-control">
             </div>

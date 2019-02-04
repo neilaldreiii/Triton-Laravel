@@ -6,6 +6,7 @@
     <div class="container border-bottom">
         <form action="/gallery" method="POST" enctype="multipart/form-data">
             @csrf
+            <h4 class="m-3">Add Image</h4>
             <div class="form-group m-3">
                 <input type="text" name="description" placeholder="Description" id="" class="form-control">
             </div>
