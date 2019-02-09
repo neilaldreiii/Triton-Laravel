@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Products;
+use App\Orders;
 
 class OrderController extends Controller
 {
@@ -32,9 +34,22 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Products $product)
+    {   
+        $attributes = request()->validate([
+            'fullname' => ['required', 'min:2'],
+            'address' => ['required', 'min:2'],
+            'size' => ['required'],
+            'mobile_number' => ['required']
+        ]);
+
+        $attributes['products_id'] = $product->id;
+        $attributes['product'] = $product->title;
+        $attributes['price'] = $product->price;
+
+        $product->addOrder($attributes);
+
+        return back();
     }
 
     /**

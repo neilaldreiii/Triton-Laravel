@@ -18,8 +18,8 @@ class CreateOrdersTable extends Migration
             $table->string('fullname');
             $table->mediumText('address');
             $table->string('size');
-            $table->unsignedInteger('mobile_number');
-            $table->unsignedInteger('product_id');
+            $table->string('mobile_number');
+            $table->unsignedInteger('products_id');
             $table->string('product');
             $table->string('price');
             $table->timestamps();
