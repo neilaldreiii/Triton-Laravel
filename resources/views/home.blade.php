@@ -3,20 +3,26 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
+        <div class="col">
+            <div class="card m-3">
                 <div class="card-header">Dashboard</div>
-                @foreach ($users as $user)
-                    {{ $user->name }}
-                @endforeach
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
-
                     You are logged in!
+                </div>
+                <div class="card-body">
+                    @if ($users->count())
+                        <h3>Requesting approval</h3>
+                        @foreach ($users as $user)
+                            <p>{{ ucwords($user->name) }}</p>
+                        @endforeach
+                    @else
+                    <p>No requests found.</p>
+                    @endif
                 </div>
             </div>
         </div>
