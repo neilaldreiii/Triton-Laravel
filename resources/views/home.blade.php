@@ -34,12 +34,12 @@
                                         <form action="/user/{{ $user->id }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             @method("PATCH")
-                                            <button type="submit" class="m-1 btn btn-outline-success">Approve</button>
+                                            <button type="submit" class="m-1 btn btn-outline-success">Approve <i class="fas fa-check"></i></button>
                                         </form>
                                         <form action="/user/{{ $user->id }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             @method("DELETE")
-                                            <button type="submit" class="m-1 btn btn-outline-danger">Decline</button>
+                                            <button type="submit" class="m-1 btn btn-outline-danger">Decline <i class="fas fa-times"></i></button>
                                         </form>
                                     </div>
                                 </li>
@@ -58,14 +58,22 @@
             <h1>Registrations</h1>
             @foreach ($registrations as $registration)
                 <div class="card mt-3 mb-3">
-                    <div class="card-header">
+                    <div class="card-header d-flex justify-content-between">
                         <h4>{{ ucwords($registration->firstname) }} {{ ucwords($registration->middlename) }} {{ ucwords($registration->lastname) }}</h4>
+                        <form action="/registration/{{ $registration->id }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            @method("DELETE")
+                            <button type="submit" class="m-1 btn btn-outline-primary">Done <i class="fas fa-check"></i></button>
+                        </form>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">{{ $registration->gender }}</li>
+                        <li class="list-group-item">{{ ucfirst($registration->gender) }}</li>
                         <li class="list-group-item">{{ $registration->birth_month }} {{ $registration->birth_day }} {{ $registration->birth_year }}</li>
                         <li class="list-group-item">{{ $registration->school }}</li>
-                        <li class="list-group-item">{{ $registration->parent }} {{ $registration->mobile }}</li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <p>{{ $registration->parent }}</p>
+                            <p>{{ $registration->mobile }}</p>
+                        </li>
                         <li class="list-group-item"><small>Registered on: {{ date('D, M / d / Y - h:i A',strtotime($registration->created_at)) }}</small></li>
                     </ul>
                 </div>

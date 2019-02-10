@@ -55,4 +55,13 @@ class PagesController extends Controller
         $registration->save();
         return redirect('/registration')->with('success', 'Thank you for joining triton swim club. You will receive a message or a call from a triton official regarding the registration.');
     }
+
+    public function registerDone($id)
+    {
+        $registration = Registration::findOrFail($id);
+        if($registration->delete())
+        {
+            return redirect('/home')->with('success', $registration->firstname.' '.$registration->lastname.' marked as done.');
+        }
+    }
 }

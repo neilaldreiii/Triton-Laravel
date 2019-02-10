@@ -28,8 +28,10 @@ Route::resource('products', 'ProductsController');
 Route::get('/coaches', 'PagesController@coaches');
 Route::get('/guidelines', 'PagesController@guide');
 Route::get('/registration', 'PagesController@register'); // registration view
-ROute::post('/registration', 'PagesController@registerAthletes');
+Route::post('/registration', 'PagesController@registerAthletes'); //online triton membership
+Route::delete('/registration/{id}', 'PagesController@registerDone'); //remove membership
 Route::get('/policies', 'PagesController@policy');
+
 
 Route::post('/products/{product}/orders', 'OrderController@store');
 
