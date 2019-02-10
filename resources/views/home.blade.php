@@ -107,6 +107,13 @@
                             <small>Order placed on: {{ date('D, M / d / Y - h:i A',strtotime($order->created_at)) }}</small>
                         </li>
                     </ul>
+                    <div class="card-body">
+                        <form action="/orders/{{ $order->id }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            @method("DELETE")
+                            <button type="submit" class="m-1 btn btn-outline-primary">Order Processed <i class="fas fa-check"></i></button>
+                        </form>
+                    </div>
                 </div>
             
             @endforeach

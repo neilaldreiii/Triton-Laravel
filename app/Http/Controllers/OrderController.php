@@ -49,7 +49,7 @@ class OrderController extends Controller
 
         $product->addOrder($attributes);
 
-        return back()->with('success', 'Thank you for purchasing '.$product->title.'. Your order has been placed. Please wait for a triton official to confirm your order.');
+        return redirect('/products')->with('success', 'Thank you for purchasing '.$product->title.'. Your order has been placed. Please wait for a triton official to confirm your order.');
     }
 
     /**
@@ -94,6 +94,10 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $order = Orders::findOrFail($id);
+        if($order->delete())
+        {
+            return redirect('/home')->with('success', $order->fullname.'\'s order has been processed.');
+        }
     }
 }

@@ -34,6 +34,7 @@ Route::get('/policies', 'PagesController@policy');
 
 
 Route::post('/products/{product}/orders', 'OrderController@store');
+Route::delete('/orders/{id}', 'OrderController@destroy');
 
 Route::patch('/user/{id}', 'HomeController@approve');
 Route::delete('/user/{id}', 'HomeController@decline');

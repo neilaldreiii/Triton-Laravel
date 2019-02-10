@@ -26,7 +26,7 @@
                             <p class="card-text text-center">Php. {{ $product->price }}</p>
                         </div>
                         <div class="card-body">
-                            <a href="/products/{{ $product->id }}" class="btn btn-primary btn-block">Buy</a>
+                            <a href="/products/{{ $product->id }}" class="btn btn-primary btn-block">Order</a>
                         </div>
                         <div class="card-body">
                             @auth
