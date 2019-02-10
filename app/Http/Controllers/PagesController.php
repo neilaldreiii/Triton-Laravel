@@ -25,20 +25,21 @@ class PagesController extends Controller
     }
     public function registerAthletes()
     {
-        $attributes = request()->validate([
-            'gender' => ['required', 'min:3'],
-            'birth_month' => ['required', 'min:1'],
-            'birth_day' => ['required', 'max:2'],
-            'birth_year' => ['required', 'max:4'],
-            'firstname' => ['required', 'min:1'],
-            'middlename' => ['required', 'min:1'],
-            'lastname' => ['required', 'min:1'],
-            'school' => ['required', 'min:1'],
-            'parent' => ['required', 'min:1'],
-            'mobile' => ['required', 'min:10'],
-        ]);
+        //storing to database without auth
+        $registration = new Registration();
 
-        Registration::create($attributes);
-        return redirect('/registration');
+        $registration->gender = request('gender');
+        $registration->birth_month = request('birth_month');
+        $registration->birth_day = request('birth_day');
+        $registration->birth_year = request('birth_year');
+        $registration->firstname = request('firstname');
+        $registration->middlename = request('middlename');
+        $registration->lastname = request('lastname');
+        $registration->school = request('school');
+        $registration->parent = request('parent');
+        $registration->mobile = request('mobile');
+
+        $registration->save();
+        return redirect('/registration')->with('success', 'Thank you for joining triton swim club. You will receive a message or a call from a triton official regarding the registration.');
     }
 }
