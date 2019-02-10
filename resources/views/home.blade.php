@@ -29,7 +29,7 @@
                             @foreach ($users as $user)
                                 <li class="list-group-item d-flex justify-content-between">
                                     <p>{{ ucwords($user->name) }}</p>
-                                    <p><b>Joined:</b> {{ date('D, M / d / Y - H:i A',strtotime($user->created_at)) }}</p>
+                                    <p><b>Joined:</b> {{ date('D, M / d / Y - h:i A',strtotime($user->created_at)) }}</p>
                                     <div class="d-flex justify-content-center">
                                         <form action="/user/{{ $user->id }}" method="POST" enctype="multipart/form-data">
                                             @csrf
@@ -66,7 +66,7 @@
                         <li class="list-group-item">{{ $registration->birth_month }} {{ $registration->birth_day }} {{ $registration->birth_year }}</li>
                         <li class="list-group-item">{{ $registration->school }}</li>
                         <li class="list-group-item">{{ $registration->parent }} {{ $registration->mobile }}</li>
-                        <li class="list-group-item"><small>Registered on: {{ date('D, M / d / Y - H:i A',strtotime($registration->created_at)) }}</small></li>
+                        <li class="list-group-item"><small>Registered on: {{ date('D, M / d / Y - h:i A',strtotime($registration->created_at)) }}</small></li>
                     </ul>
                 </div>
             @endforeach
@@ -96,7 +96,7 @@
                             {{ $order->mobile_number }}
                         </li>
                         <li class="list-group-item">
-                            <small>Order placed on: {{ date('D, M / d / Y - H:i A',strtotime($order->created_at)) }}</small>
+                            <small>Order placed on: {{ date('D, M / d / Y - h:i A',strtotime($order->created_at)) }}</small>
                         </li>
                     </ul>
                 </div>
