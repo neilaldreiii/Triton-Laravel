@@ -81,7 +81,7 @@ class AthletesController extends Controller
         $attributes['secondary_dp'] = $fileNameToStoreS;
 
         $athlete = Athletes::create($attributes);
-        return redirect('/athletes');
+        return redirect('/athletes')->with('success','Athlete added.');
     }
 
     /**
@@ -158,7 +158,7 @@ class AthletesController extends Controller
        }
 
         if($athletes->save()) {
-            return redirect('/athletes');
+            return redirect('/athletes')->with('success','Edited '.$athletes->fullname);
         }
     }
 
@@ -178,6 +178,6 @@ class AthletesController extends Controller
             Storage::delete('public/uploads/'.$athlete->secondary_dp);
         }
 
-        return redirect('/athletes');
+        return redirect('/athletes')->with('success', 'Removed '.$athlete->fullname);
     }
 }

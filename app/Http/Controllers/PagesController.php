@@ -23,8 +23,21 @@ class PagesController extends Controller
     {
         return view('pages.policies');
     }
-    public function registerAthletes()
+    public function registerAthletes(Request $request)
     {
+        $this->validate($request, [
+            'gender' => 'required',
+            'birth_month' => 'required',
+            'birth_day' => 'required',
+            'birth_year' => 'required',
+            'firstname' => 'required',
+            'middlename' => 'required',
+            'lastname' => 'required',
+            'school' => 'required',
+            'parent' => 'required',
+            'mobile' => 'required',
+        ]);
+
         //storing to database without auth
         $registration = new Registration();
 

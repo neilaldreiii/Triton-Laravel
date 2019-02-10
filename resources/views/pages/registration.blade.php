@@ -4,11 +4,6 @@
 
 @section('content')
     <div class="container">
-        @if (session('status'))
-            <div class="alert alert-success" role="alert">
-                {{ session('status') }}
-            </div>
-        @endif
         <div class="row mt-3 mb-3 border-bottom">
             <div class="col-sm">
                 <h1 class="text-center mt-3 mb-4">Registration</h1>

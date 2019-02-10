@@ -71,7 +71,7 @@ class EventsController extends Controller
         $attributes['attachment'] = $fileNameToStore;
 
         $events = Events::create($attributes);
-        return redirect('/events');
+        return redirect('/events')->with('success', 'Event created');
     }
 
     /**
@@ -132,7 +132,7 @@ class EventsController extends Controller
        }
 
         if($event->save()) {
-            return redirect('/events');
+            return redirect('/events')->with('success', 'Edited '.$event->title);
         }
     }
 
@@ -151,6 +151,6 @@ class EventsController extends Controller
             Storage::delete('public/uploads/'.$event->attachment);
         }
 
-        return redirect('/events');
+        return redirect('/events')->with('success', 'Removed '.$event->title);
     }
 }

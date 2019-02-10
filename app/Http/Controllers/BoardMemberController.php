@@ -71,7 +71,7 @@ class BoardMemberController extends Controller
         $attributes['member_dp'] = $fileNameToStore;
 
         $events = BoardMembers::create($attributes);
-        return redirect('/board');
+        return redirect('/board')->with('success', 'Board Member added');
     }
 
     /**
@@ -132,7 +132,7 @@ class BoardMemberController extends Controller
        }
 
         if($members->save()) {
-            return redirect('/board');
+            return redirect('/board')->with('success', 'Edited '.$members->member);
         }
     }
 
@@ -151,6 +151,6 @@ class BoardMemberController extends Controller
             Storage::delete('public/uploads/'.$member->member_dp);
         }
 
-        return redirect('/board');
+        return redirect('/board')->with('success', 'Removed '.$member->member);
     }
 }

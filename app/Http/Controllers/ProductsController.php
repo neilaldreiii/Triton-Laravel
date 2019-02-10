@@ -65,7 +65,7 @@ class ProductsController extends Controller
         $attributes['image'] = $filenameToStore;
 
         $products = Products::create($attributes);
-        return redirect('/products');
+        return redirect('/products')->with('success', 'Product Added');
     }
 
     /**
@@ -127,7 +127,7 @@ class ProductsController extends Controller
        }
 
         if($product->save()) {
-            return redirect('/products');
+            return redirect('/products')->with('success', 'Edited '.$product->title);
         }
     }
 
@@ -146,6 +146,6 @@ class ProductsController extends Controller
             Storage::delete('public/uploads/'.$product->image);
         }
 
-        return redirect('/products');
+        return redirect('/products')->with('success', 'Removed '.$product->title);
     }
 }

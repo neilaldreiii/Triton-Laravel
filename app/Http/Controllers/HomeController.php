@@ -27,7 +27,7 @@ class HomeController extends Controller
     public function index()
     {
         $users = User::where('email_verified_at', 'false')->get();
-        $registrations = Registration::orderBy('created_at', 'ASC')->get();
+        $registrations = Registration::orderBy('created_at', 'DESC')->get();
         $orders = Orders::orderBy('created_at', 'DESC')->get();
 
         return view('home', compact('users', 'registrations', 'orders'));

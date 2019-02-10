@@ -20,6 +20,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3>{{ $event->title }}</h3>
+                            <small>Posted on: {{ date('D, M / d / Y - H:i A',strtotime($event->created_at)) }}</small>
                         </div>
                         <img style="max-height: 520px;" src="/storage/uploads/{{ $event->attachment }}" alt="" class="card-img-top">
                         <div class="card-body">

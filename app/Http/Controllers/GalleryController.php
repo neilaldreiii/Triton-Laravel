@@ -70,7 +70,7 @@ class GalleryController extends Controller
         $attributes['image'] = $filenameToStore;
 
         $gallery = Gallery::create($attributes);
-        return redirect('/gallery');
+        return redirect('/gallery')->with('success', 'Image added');
     }
 
     /**
@@ -122,6 +122,6 @@ class GalleryController extends Controller
             Storage::delete('public/uploads/'.$gallery->image);
         }
 
-        return redirect('/gallery');
+        return redirect('/gallery')->with('success', 'Removed '.$gallery->description);
     }
 }

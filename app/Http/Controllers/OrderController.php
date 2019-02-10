@@ -49,7 +49,7 @@ class OrderController extends Controller
 
         $product->addOrder($attributes);
 
-        return back();
+        return back()->with('success', 'Thank you for purchasing '.$product->title.'. Your order has been placed. Please wait for a triton official to confirm your order.');
     }
 
     /**
