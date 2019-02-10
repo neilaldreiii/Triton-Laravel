@@ -32,4 +32,22 @@ class HomeController extends Controller
 
         return view('home', compact('users', 'registrations', 'orders'));
     }
+
+    public function approve($id)
+    {
+        $user = User::findOrFail($id);
+        $user->email_verified_at = true;
+        if($user->save()) 
+        {
+            return redirect('/home')->with('success',$user->name.' Has been approved');
+        }
+    }
+    public function decline($id)
+    {
+        $user = User::findOrFail($id);
+        if($user->delete())
+        {
+            return redirect('/home')->with('success', 'Declined '.$user->name);
+        }
+    }
 }

@@ -32,3 +32,6 @@ ROute::post('/registration', 'PagesController@registerAthletes');
 Route::get('/policies', 'PagesController@policy');
 
 Route::post('/products/{product}/orders', 'OrderController@store');
+
+Route::patch('/user/{id}', 'HomeController@approve');
+Route::delete('/user/{id}', 'HomeController@decline');

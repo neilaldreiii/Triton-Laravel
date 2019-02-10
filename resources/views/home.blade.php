@@ -14,14 +14,39 @@
                     @endif
                     You are logged in!
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col">
+            <div class="card m-3">
+                <div class="card-header">
+                    <h3>Requesting approval</h3>
+                </div>
                 <div class="card-body">
                     @if ($users->count())
-                        <h3>Requesting approval</h3>
-                        @foreach ($users as $user)
-                            <p>{{ ucwords($user->name) }}</p>
-                        @endforeach
+                        <ul class="list-group">
+                            @foreach ($users as $user)
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <p>{{ ucwords($user->name) }}</p>
+                                    <p><b>Joined:</b> {{ date('D, M / d / Y - H:i A',strtotime($user->created_at)) }}</p>
+                                    <div class="d-flex justify-content-center">
+                                        <form action="/user/{{ $user->id }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            @method("PATCH")
+                                            <button type="submit" class="m-1 btn btn-outline-success">Approve</button>
+                                        </form>
+                                        <form action="/user/{{ $user->id }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            @method("DELETE")
+                                            <button type="submit" class="m-1 btn btn-outline-danger">Decline</button>
+                                        </form>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
                     @else
-                    <p>No requests found.</p>
+                        <p>No requests found.</p>
                     @endif
                 </div>
             </div>
