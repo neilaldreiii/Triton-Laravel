@@ -29,10 +29,10 @@
     </div>
     <div class="row mt-3 mb-3">
     @if ($registrations->count())
-        @foreach ($registrations as $registration)
-            <div class="col m-3">
-                <h1>Registrations</h1>
-                <div class="card">
+        <div class="col m-3">
+            <h1>Registrations</h1>
+            @foreach ($registrations as $registration)
+                <div class="card mt-3 mb-3">
                     <div class="card-header">
                         <h4>{{ ucwords($registration->firstname) }} {{ ucwords($registration->middlename) }} {{ ucwords($registration->lastname) }}</h4>
                     </div>
@@ -43,12 +43,12 @@
                         <li class="list-group-item">{{ $registration->parent }} {{ $registration->mobile }}</li>
                     </ul>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
+        </div>
     @else
-            <div class="col m-3">
-                <p>No Registrations found</p>
-            </div>
+        <div class="col m-3">
+            <p>No Registrations found</p>
+        </div>
     @endif
     @if ($orders->count())
         @foreach ($orders as $order)
