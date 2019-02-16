@@ -14,6 +14,20 @@ class Message extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        //return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'message' => $this->message,
+            'sender' => $this->sender,
+            'sender_id' => $this->sender_id,
+            'created_at' => $this->created_at
+        ];
+    }
+    //
+    public function with($request) {
+        return [
+            'version' => '1.0.0',
+            'author_url' => url('http:://projectowl.dev')
+        ];
     }
 }

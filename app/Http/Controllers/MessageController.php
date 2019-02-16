@@ -43,6 +43,7 @@ class MessageController extends Controller
         $message = new Message;
 
         $message->sender = $request->input("sender");
+        $message->sender_id = $request->input("sender_id");
         $message->message = $request->input("message");
 
         if($message->save()) {
