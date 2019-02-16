@@ -17,7 +17,7 @@ class MessageController extends Controller
     public function index()
     {
         //get messages
-        $messages = Message::orderBy('created_at', "DESC")->get();
+        $messages = Message::orderBy('created_at', "ASC")->get();
 
         return MessageResource::collection($messages);
     }
@@ -40,7 +40,14 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $message = new Message;
+
+        $message->sender = $request->input("sender");
+        $message->message = $request->input("message");
+
+        if($message->save()) {
+            return new MessageResource($message);
+        }
     }
 
     /**

@@ -24,10 +24,12 @@
 
 </head>
 <body>
-    @include('inc.navbar')
-    <main class="py-4">
-        @include('inc.message')
-        @yield('content')
-    </main>
+    <div id="app">
+        @include('inc.navbar')
+        <main class="py-4">
+            @include('inc.message')
+            @yield('content')
+        </main>
+    </div>
 </body>
 </html>

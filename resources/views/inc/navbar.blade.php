@@ -37,6 +37,11 @@
         </li>
     </ul>
     <div class="nav-controls">
+        @auth
+            <triton-chat :user="{{ Auth::user() }}"></triton-chat>
+        @endauth
+    </div>
+    <div class="nav-controls">
         @if (Route::has('login'))
             <div class="top-right-links d-flex">
                 @auth
